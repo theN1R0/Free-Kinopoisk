@@ -1,4 +1,13 @@
 <p align="center">
+  <!-- Кнопка установки Tampermonkey -->
+  <a href="https://www.tampermonkey.net/" target="_blank">
+    <img
+      alt="Install Tampermonkey"
+      src="https://img.shields.io/badge/Установить%20Tampermonkey-black?logo=tampermonkey&logoColor=white&style=for-the-badge"
+    />
+  </a>
+  &nbsp;&nbsp;
+  <!-- Кнопка установки скрипта -->
   <a href="https://dev.animeflow.su/freekinopoisk.user.js">
     <img
       alt="Install userscript"
@@ -6,6 +15,7 @@
     />
   </a>
   &nbsp;&nbsp;
+  <!-- Основной проект -->
   <a href="https://animeflow.su" title="Основной проект AnimeFlow">
     <img
       alt="Основной проект AnimeFlow"
@@ -13,6 +23,7 @@
     />
   </a>
 </p>
+
 
 ---
 
