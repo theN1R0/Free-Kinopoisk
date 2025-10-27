@@ -1,12 +1,14 @@
 // ==UserScript==
 // @name         KP → Смотерть бесплатно (Animeflow.su)
 // @namespace    kp-animeflow-button
-// @version      1.1
-// @description  Добавляет кнопку "Смотреть бесплатно" в блок кнопок на Кинопоиске и делает её такого же стиля, как у "Буду смотреть"
+// @version      1.6
+// @description  Добавляет кнопку "Смотреть бесплатно" в блок кнопок на Кинопоиске и делает её оранжевой как кнопка "Смотреть онлайн"
 // @match        https://www.kinopoisk.ru/*
 // @run-at       document-idle
 // @grant        none
 // @homepageURL    https://www.animeflow.su
+// @updateURL    https://www.dev.animeflow.su/freekinopoisk.user.js
+// @downloadURL  https://www.dev.animeflow.su/freekinopoisk.user.js
 // ==/UserScript==
 
 (function () {
@@ -33,9 +35,32 @@
         sobiqBtn.removeAttribute('aria-pressed');
         sobiqBtn.removeAttribute('aria-expanded');
 
-        // Меняем контент кнопки на наш текст
-        // (убиваем иконку, спаны и т.п., просто делаем текст)
-        sobiqBtn.textContent = 'Смотреть бесплатно';
+        // Очищаем содержимое кнопки
+        sobiqBtn.innerHTML = '';
+
+        // Создаем иконку
+        const icon = document.createElement('span');
+        icon.className = 'styles_icon__UOJnq';
+        icon.style.display = 'inline-block';
+        icon.style.width = '24px';
+        icon.style.height = '24px';
+        icon.style.backgroundImage = 'url("data:image/svg+xml;charset=utf-8,%3Csvg width=\'24\' height=\'24\' fill=\'%23fff\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M6 3.375 21 12 6 20.625V3.375Z\' fill=\'%23fff\'/%3E%3C/svg%3E")';
+        icon.style.backgroundRepeat = 'no-repeat';
+        icon.style.backgroundPosition = '50%';
+        icon.style.marginRight = '8px';
+        icon.style.verticalAlign = 'middle';
+
+        // Создаем текст
+        const text = document.createElement('span');
+        text.textContent = 'Смотреть бесплатно';
+        text.style.verticalAlign = 'middle';
+
+        // Добавляем иконку и текст в кнопку
+        sobiqBtn.appendChild(icon);
+        sobiqBtn.appendChild(text);
+
+        // Применяем оранжевые стили как у кнопки "Смотреть онлайн"
+        applyOrangeStyles(sobiqBtn);
 
         // Вешаем наш клик
         sobiqBtn.addEventListener('click', (e) => {
@@ -44,6 +69,47 @@
         });
 
         return sobiqWrapper;
+    }
+
+    // Функция для применения оранжевых стилей
+    function applyOrangeStyles(button) {
+        // Устанавливаем градиент как в оригинале
+        button.style.background = 'linear-gradient(135deg, #f50 69.93%, #d6bb00 100%)';
+        button.style.backgroundImage = 'linear-gradient(135deg, #760302 50%, rgb(250,0,0) 100%)';
+        button.style.backgroundColor = 'transparent';
+        button.style.border = 'none';
+        button.style.color = '#fff';
+        button.style.fontWeight = '600';
+
+        // Добавляем правильные отступы как у оригинальной кнопки
+        button.style.paddingLeft = '2.2rem';
+        button.style.paddingRight = '2.6rem';
+        button.style.paddingTop = '1.4rem';
+        button.style.paddingBottom = '1.4rem';
+
+        // Добавляем transition как в оригинале
+        button.style.transition = 'background .2s ease, transform .2s ease';
+
+        // Добавляем hover-эффект
+        button.addEventListener('mouseenter', function() {
+            this.style.background = 'linear-gradient(135deg, #760302 55%, rgb(250,0,0) 100%)';
+            this.style.transform = 'scale(1.05)';
+        });
+
+        button.addEventListener('mouseleave', function() {
+            this.style.background = 'linear-gradient(135deg, #760302 60%, rgb(250,0,0) 100%)';
+            this.style.transform = 'scale(1)';
+        });
+
+        button.addEventListener('mousedown', function() {
+            this.style.background = 'linear-gradient(135deg, #760302 65%, rgb(250,0,0) 100%)';
+            this.style.transform = 'scale(1.02)';
+        });
+
+        button.addEventListener('mouseup', function() {
+            this.style.background = 'linear-gradient(135deg, #760302 70%, rgb(250,0,0) 100%)';
+            this.style.transform = 'scale(1.05)';
+        });
     }
 
     function injectButtonIfNeeded() {
@@ -55,7 +121,6 @@
         if (container.querySelector('.sobiq-btn-kp')) return;
 
         // Берём прямых детей контейнера и ищем среди них обёртку с нормальной "длинной" кнопкой
-        // (а не круглую с тремя точками). Обычно это первая кнопка "Буду смотреть".
         const directChildren = Array.from(container.children)
             .filter(el => el.querySelector && el.querySelector('button'));
 
@@ -78,8 +143,8 @@
         const sobiqWrapper = makeSobiqButtonFrom(baseWrapper);
         if (!sobiqWrapper) return;
 
-        // Вставляем в конец контейнера (после троеточия и т.д.)
-        container.appendChild(sobiqWrapper);
+        // Вставляем на первую позицию (перед всеми кнопками)
+        container.insertBefore(sobiqWrapper, directChildren[0]);
     }
 
     // Кинопоиск — SPA, DOM меняется без перезагрузки. Следим и пере-вставляем при обновлении контента.
