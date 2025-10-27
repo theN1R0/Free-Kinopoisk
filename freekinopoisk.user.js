@@ -2,7 +2,7 @@
 // @name         KP → Смотерть бесплатно (Animeflow.su)
 // @namespace    kp-animeflow-button
 // @version      1.6
-// @description  Добавляет кнопку "Смотреть бесплатно" в блок кнопок на Кинопоиске и делает её оранжевой как кнопка "Смотреть онлайн"
+// @description  Добавляет кнопку "Смотреть бесплатно"
 // @match        https://www.kinopoisk.ru/*
 // @run-at       document-idle
 // @grant        none
@@ -59,7 +59,7 @@
         sobiqBtn.appendChild(icon);
         sobiqBtn.appendChild(text);
 
-        // Применяем оранжевые стили как у кнопки "Смотреть онлайн"
+        // Применяем стили как у кнопки "Смотреть онлайн"
         applyOrangeStyles(sobiqBtn);
 
         // Вешаем наш клик
@@ -71,7 +71,7 @@
         return sobiqWrapper;
     }
 
-    // Функция для применения оранжевых стилей
+    // Функция для применения  стилей
     function applyOrangeStyles(button) {
         // Устанавливаем градиент как в оригинале
         button.style.background = 'linear-gradient(135deg, #f50 69.93%, #d6bb00 100%)';
