@@ -16,7 +16,7 @@
 
     // Собираем URL sobiq из текущей страницы
     function getSobiqUrl() {
-        return location.href.replace('kinopoisk.ru', 'sobiq.ru');
+        return location.href.replace('kinopoisk.ru', 'mnogokino.su');
     }
 
     // Создаём нашу кнопку, клонируя настоящую кнопку КП
