@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         KP → Смотерть бесплатно (Animeflow.su)
 // @namespace    kp-animeflow-button
-// @version      1.6
+// @version      1.8
 // @description  Добавляет кнопку "Смотреть бесплатно"
 // @match        https://www.kinopoisk.ru/*
 // @run-at       document-idle
 // @grant        none
 // @homepageURL    https://www.animeflow.su
-// @updateURL    https://www.dev.animeflow.su/freekinopoisk.user.js
-// @downloadURL  https://www.dev.animeflow.su/freekinopoisk.user.js
+// @updateURL    https://www.mnogokino.su/freekinopoisk.user.js
+// @downloadURL  https://www.mnogokino.su/freekinopoisk.user.js
 // ==/UserScript==
 
 (function () {
