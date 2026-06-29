@@ -8,7 +8,7 @@
   </a>
   &nbsp;&nbsp;
   <!-- Кнопка установки скрипта -->
-  <a href="[https://dev.animeflow.su/freekinopoisk.user.js](https://www.mnogokino.su/freekinopoisk.user.js)">
+  <a href="https://www.mnogokino.su/freekinopoisk.user.js">
     <img
       alt="Install userscript"
       src="https://img.shields.io/badge/Установить%20скрипт%20(Tampermonkey)-blue?logo=tampermonkey&logoColor=white&style=for-the-badge"
